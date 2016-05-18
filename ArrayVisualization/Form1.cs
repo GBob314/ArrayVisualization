@@ -13,6 +13,7 @@ namespace ArrayVisualization
     public partial class Form1 : Form
     {
 
+        //THERE ARE NO COMMENTS HAHAHAHA!!!
         Graphics drawArea;
         const int arrSize = 40;
         int[] arr = new int[arrSize];
