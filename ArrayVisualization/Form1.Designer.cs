@@ -33,6 +33,7 @@
             this.drawArray = new System.Windows.Forms.Button();
             this.shuffleArrayBtn = new System.Windows.Forms.Button();
             this.selectSortBtn = new System.Windows.Forms.Button();
+            this.quickSortBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.drawingArea)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,11 +85,22 @@
             this.selectSortBtn.UseVisualStyleBackColor = true;
             this.selectSortBtn.Click += new System.EventHandler(this.selectSortBtn_Click);
             // 
+            // quickSortBtn
+            // 
+            this.quickSortBtn.Location = new System.Drawing.Point(14, 288);
+            this.quickSortBtn.Name = "quickSortBtn";
+            this.quickSortBtn.Size = new System.Drawing.Size(119, 63);
+            this.quickSortBtn.TabIndex = 5;
+            this.quickSortBtn.Text = "Quick Sort!";
+            this.quickSortBtn.UseVisualStyleBackColor = true;
+            this.quickSortBtn.Click += new System.EventHandler(this.quickSortBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(937, 498);
+            this.Controls.Add(this.quickSortBtn);
             this.Controls.Add(this.selectSortBtn);
             this.Controls.Add(this.shuffleArrayBtn);
             this.Controls.Add(this.drawArray);
@@ -109,6 +121,7 @@
         private System.Windows.Forms.Button drawArray;
         private System.Windows.Forms.Button shuffleArrayBtn;
         private System.Windows.Forms.Button selectSortBtn;
+        private System.Windows.Forms.Button quickSortBtn;
     }
 }
 

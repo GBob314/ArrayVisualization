@@ -214,10 +214,91 @@ namespace ArrayVisualization
             }
         }
 
+        private int Partition(int[] numbers, int left, int right)
+        {
+            int drawHeight = drawingArea.Height;
+            int drawWidth = drawingArea.Width;
+
+            int pivot = numbers[left];
+            while (true)
+            {
+                int padding = 0;
+                while (numbers[left] < pivot)
+                    left++;
+
+                while (numbers[right] > pivot)
+                    right--;
+
+                if (left < right)
+                {
+                    drawArea.Clear(drawingArea.BackColor);
+                    for (int k = 0; k < numbers.Length; k++)
+                    {
+                        if (k == right || k == left)
+                        {
+                            Rectangle rectDraw = new Rectangle((k + padding), drawHeight - numbers[k], 10, drawHeight);
+                            drawArea.FillRectangle(Brushes.Red, rectDraw);
+                        }
+                        else if(numbers[k] == pivot)
+                        {
+                            Rectangle rectDraw = new Rectangle((k + padding), drawHeight - numbers[k], 10, drawHeight);
+                            drawArea.FillRectangle(Brushes.Green, rectDraw);
+                        }
+                        else
+                        {
+                            Rectangle rectDraw = new Rectangle((k + padding), drawHeight - numbers[k], 10, drawHeight);
+                            drawArea.FillRectangle(Brushes.Black, rectDraw);
+
+                        }
+                        padding += (drawWidth / arrSize);
+                    }
+                    System.Threading.Thread.Sleep(100);
+                    int temp = numbers[right];
+                    numbers[right] = numbers[left];
+                    numbers[left] = temp;
+                }
+                else
+                {
+                    return right;
+                }
+            }
+        }
+
+        private void QuickSort_Recursive(int[] arr, int left, int right)
+        {
+            // For Recusrion
+            if (left < right)
+            {
+                int pivot = Partition(arr, left, right);
+
+                if (pivot > 1)
+                    QuickSort_Recursive(arr, left, pivot - 1);
+
+                if (pivot + 1 < right)
+                    QuickSort_Recursive(arr, pivot + 1, right);
+            }
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
+        private void quickSortBtn_Click(object sender, EventArgs e)
+        {
+            drawArea.Clear(drawingArea.BackColor);
+            QuickSort_Recursive(arr, 0, arr.Length - 1);
+            int drawHeight = drawingArea.Height;
+            int drawWidth = drawingArea.Width;
+            int padding = 0;
+
+            drawArea.Clear(drawingArea.BackColor);
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Rectangle rectDraw = new Rectangle((i + padding), drawHeight - arr[i], 10, drawHeight);
+                drawArea.FillRectangle(Brushes.Black, rectDraw);
+                padding += (drawWidth / arrSize);
+            }
+        }
     }
 }
