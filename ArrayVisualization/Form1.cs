@@ -214,6 +214,23 @@ namespace ArrayVisualization
             }
         }
 
+        private void quickSortBtn_Click(object sender, EventArgs e)
+        {
+            drawArea.Clear(drawingArea.BackColor);
+            QuickSort_Recursive(arr, 0, arr.Length - 1);
+            int drawHeight = drawingArea.Height;
+            int drawWidth = drawingArea.Width;
+            int padding = 0;
+
+            drawArea.Clear(drawingArea.BackColor);
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Rectangle rectDraw = new Rectangle((i + padding), drawHeight - arr[i], 10, drawHeight);
+                drawArea.FillRectangle(Brushes.Black, rectDraw);
+                padding += (drawWidth / arrSize);
+            }
+        }
+
         private int Partition(int[] numbers, int left, int right)
         {
             int drawHeight = drawingArea.Height;
@@ -239,7 +256,7 @@ namespace ArrayVisualization
                             Rectangle rectDraw = new Rectangle((k + padding), drawHeight - numbers[k], 10, drawHeight);
                             drawArea.FillRectangle(Brushes.Red, rectDraw);
                         }
-                        else if(numbers[k] == pivot)
+                        else if(k > left && k < right)
                         {
                             Rectangle rectDraw = new Rectangle((k + padding), drawHeight - numbers[k], 10, drawHeight);
                             drawArea.FillRectangle(Brushes.Green, rectDraw);
@@ -252,7 +269,7 @@ namespace ArrayVisualization
                         }
                         padding += (drawWidth / arrSize);
                     }
-                    System.Threading.Thread.Sleep(100);
+                    System.Threading.Thread.Sleep(150);
                     int temp = numbers[right];
                     numbers[right] = numbers[left];
                     numbers[left] = temp;
@@ -282,23 +299,6 @@ namespace ArrayVisualization
         private void Form1_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void quickSortBtn_Click(object sender, EventArgs e)
-        {
-            drawArea.Clear(drawingArea.BackColor);
-            QuickSort_Recursive(arr, 0, arr.Length - 1);
-            int drawHeight = drawingArea.Height;
-            int drawWidth = drawingArea.Width;
-            int padding = 0;
-
-            drawArea.Clear(drawingArea.BackColor);
-            for (int i = 0; i < arr.Length; i++)
-            {
-                Rectangle rectDraw = new Rectangle((i + padding), drawHeight - arr[i], 10, drawHeight);
-                drawArea.FillRectangle(Brushes.Black, rectDraw);
-                padding += (drawWidth / arrSize);
-            }
         }
     }
 }
